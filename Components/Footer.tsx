@@ -19,17 +19,7 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Subscribe block comes second */}
-          <div className="flex flex-col">
-            <h3 className="font-semibold text-[14px] pb-[20px]">Subscribe To Our News</h3>
-            <input
-              type="email"
-              placeholder="Your Email Address"
-              className="w-full md:w-[245px] h-[40px] px-4 py-2 mb-[16px] font-semibold rounded-[5px] bg-white text-black text-[12px]"
-            />
-            <button className="bg-[#7873FF] text-white text-sm font-semibold items-center justify-center rounded-[5px] w-[120px] h-[40px]">
-              Send
-            </button>
-          </div>
+         
 
           {/* Our Company and Services section */}
           <div className="md:col-span-2 flex flex-col sm:flex-row md:justify-center gap-10 md:gap-40">
@@ -52,6 +42,17 @@ const Footer: React.FC = () => {
                 <li><a href="#" className="hover:underline">Custom Offers</a></li>
               </ul>
             </div>
+          </div>
+           <div className="flex flex-col">
+            <h3 className="font-semibold text-[14px] pb-[20px]">Subscribe To Our News</h3>
+            <input
+              type="email"
+              placeholder="Your Email Address"
+              className="w-full md:w-[245px] h-[40px] px-4 py-2 mb-[16px] font-semibold rounded-[5px] bg-white text-black text-[12px]"
+            />
+            <button className="bg-[#7873FF] text-white text-sm font-semibold items-center justify-center rounded-[5px] w-[120px] h-[40px]">
+              Send
+            </button>
           </div>
         </div>
       </div>

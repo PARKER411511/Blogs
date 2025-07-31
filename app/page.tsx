@@ -49,19 +49,13 @@ export default function Home() {
           {/* This Week’s Top News */}
           <h1 className="text-[28px] md:text-[36px] pt-[80px] md:pt-[120px]">This Week’s Top News</h1>
           <div className="pt-[40px]">
-            <Swiper
-              slidesPerView={1}
-              spaceBetween={20}
+                  <Swiper
+              slidesPerView="auto"
               loop
+              spaceBetween={20}
               autoplay={{ delay: 3000 }}
               modules={[Autoplay]}
               className="w-full"
-              breakpoints={{
-                640: { slidesPerView: 2 },
-                768: { slidesPerView: 3 },
-                1024: { slidesPerView: 4 },
-                1280: { slidesPerView: 5 },
-              }}
             >
               {[
                 {
@@ -88,9 +82,9 @@ export default function Home() {
                   image: 'https://www.brookings.edu/wp-content/uploads/2016/06/japan_wave001.jpg?quality=75',
                   alt: 'Wave',
                   title: 'Animals react to secret sounds from plants, say scientists.',
-                },
+                }
               ].map((card, index) => (
-                <SwiperSlide key={index} className="p-2 sm:p-4">
+                <SwiperSlide key={index} className="!w-[280px] sm:!w-[349px] p-5">
                   <Cards card={card} />
                 </SwiperSlide>
               ))}
