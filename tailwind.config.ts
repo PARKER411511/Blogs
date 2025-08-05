@@ -1,4 +1,4 @@
-import type { Config } from "tailwindcss";
+import type { Config } from "tailwindcss"
 
 const config: Config = {
   content: [
@@ -9,12 +9,11 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        // This makes font-sans use your CSS variable first!
         sans: ['var(--font-poppins)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
     },
   },
   plugins: [],
-};
+}
 
-export default config;
+export default config

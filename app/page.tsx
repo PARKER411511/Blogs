@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Cards from "@/Components/Cards";
 import Footer from "@/Components/Footer";
 import Nav from "@/Components/Nav";
@@ -9,32 +10,33 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import { Autoplay } from "swiper/modules";
 
+
+
 export default function Home() {
   return (
-    <div className="bg-white w-full flex flex-col h-full">
-      <div className="px-4 md:px-[60px] xl:px-[120px] py-[14px]">
-        <Nav />
-
+    <div className="bg-white w-full flex flex-col text-black h-full">
+      <Nav />
+      <div className="px-4 md:px-[60px] xl:px-[120px] py-[14px] w-full md:max-w-[70%] mx-auto">
         <div className="bg-gray-400 w-full h-[200px] md:h-[400px] mt-[40px]"></div>
 
         {/* Featured News */}
         <div className="pt-[60px] text-[#191C16]">
           <h1 className="text-[28px] md:text-[36px] pb-[20px]">
-            Our Top Featured News Today
+            Our Featured Star
           </h1>
 
           <div className="flex flex-col lg:flex-row items-start justify-between gap-6 lg:gap-10">
 
             {/* Text Block */}
             <div className="flex flex-col items-start text-[#191C16] max-w-full lg:max-w-[480px] order-2 lg:order-1">
-              <h1 className="text-[22px] md:text-[28px] font-bold">
+              <h1 className="text-[22px] md:text-[28px] font-semibold">
                 Stephen Colbert’s Late Night Allies and Famous Friends Make Cameos on The Late Show After Cancellation
               </h1>
               <h1 className="text-[14px] font-light text-[#C1C1C1] py-[4px]">Date: 23/9/2023</h1>
               <h1 className="text-[14px] pb-[20px]">
                 Adam Sandler, Anderson Cooper, Jon Stewart, Jimmy Fallon, Seth Meyers, John Oliver and Andy Cohen were among those who made surprise appearances on Monday's episode after CBS announced that the late night show would be ending in May 2026.
               </h1>
-              <button className="bg-[#191C16] text-white w-[160px] md:w-[188px] h-[45px] md:h-[51px] rounded-[4px]">
+              <button className="inline-block bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-8 py-3 rounded-full font-medium transition duration-300 hover:shadow-lg">
                 Learn More
               </button>
             </div>
@@ -42,70 +44,110 @@ export default function Home() {
             {/* Image Block */}
             <img
               src="https://www.hollywoodreporter.com/wp-content/uploads/2025/07/Stephen-Colbert-late-show-publicity-H-2025.png?w=488&h=331&crop=1&resize=488%2C331"
-              className="w-full lg:w-[488px] h-auto order-1 lg:order-2"
+              className="w-full lg:w-[588px] rounded-lg h-auto order-1 lg:order-2"
               alt="Stephen Colbert Publicity Photo"
             />
           </div>
           {/* This Week’s Top News */}
-          <h1 className="text-[28px] md:text-[36px] pt-[80px] md:pt-[120px]">This Week’s Top News</h1>
+          <h1 className="text-[28px] md:text-[36px] pt-[80px] md:pt-[120px]">This Weeks Top Stars</h1>
           <div className="pt-[40px]">
-                  <Swiper
+            <Swiper
               slidesPerView="auto"
               loop
-              spaceBetween={20}
-              autoplay={{ delay: 3000 }}
-              modules={[Autoplay]}
+              spaceBetween={60}
               className="w-full"
             >
               {[
                 {
-                  image: 'https://media.post.rvohealth.io/wp-content/uploads/2020/09/Male_Indoor_Plants_732x549-thumbnail.jpg',
-                  alt: 'Plant Image',
-                  title: 'Animals react to secret sounds from plants, say scientists.',
+                  image: 'https://i.scdn.co/image/ab6761610000e5ebe672b5f553298dcdccb0e676',
+                  alt: 'Taylor Swift',
+                  name: 'Taylor Swift',
+                  views: '2.3M views',
                 },
                 {
-                  image: 'https://media.cnn.com/api/v1/images/stellar/prod/jr-jr.jpg?c=original',
-                  alt: '3D Train Station',
-                  title: 'Japanese train station built in just two hours with 3D printing',
+                  image: 'https://i.scdn.co/image/ab6761610000e5eb9e528993a2820267b97f6aae',
+                  alt: 'The Weeknd',
+                  name: 'The Weeknd',
+                  views: '1.9M views',
                 },
                 {
-                  image: 'https://assets.science.nasa.gov/dynamicimage/assets/science/missions/hubble/releases/2025/07/STScI-01JZ3N36Y8CP44ZA07A7Z27S5Q.tif?w=2278&h=1822&fit=clip&crop=faces%2Cfocalpoint',
-                  alt: 'Black Hole',
-                  title: 'NASA’s Hubble, Chandra spot rare type of black hole eating a star',
+                  image: 'https://i.scdn.co/image/ab6761610000e5eb4a21b4760d2ecb7b0dcdc8da',
+                  alt: 'Billie Eilish',
+                  name: 'Billie Eilish',
+                  views: '2.1M views',
                 },
                 {
-                  image: 'https://s.france24.com/media/display/14e44080-6d05-11f0-81da-005056a97e36/w:1280/p:16x9/AP25211133427846.jpg',
-                  alt: 'Quake Waves',
-                  title: 'Massive waves cross the Pacific after Russian quake',
+                  image: 'https://i.scdn.co/image/ab6761610000e5eb4293385d324db8558179afd9',
+                  alt: 'Drake',
+                  name: 'Drake',
+                  views: '3.4M views',
                 },
                 {
-                  image: 'https://www.brookings.edu/wp-content/uploads/2016/06/japan_wave001.jpg?quality=75',
-                  alt: 'Wave',
-                  title: 'Animals react to secret sounds from plants, say scientists.',
+                  image: 'https://i.scdn.co/image/ab6761610000e5ebc36dd9eb55fb0db4911f25dd',
+                  alt: 'Bruno Mars',
+                  name: 'Bruno Mars',
+                  views: '2.7M views',
                 }
               ].map((card, index) => (
-                <SwiperSlide key={index} className="!w-[280px] sm:!w-[349px] p-5">
+                <SwiperSlide key={index} className="!w-[280px] sm:!w-[329px] p-5">
                   <Cards card={card} />
                 </SwiperSlide>
               ))}
             </Swiper>
-
+            
           </div>
 
-          {/* Trending Today */}
-          <div className="pt-[80px] md:pt-[120px]">
-            <h1 className="text-[28px] md:text-[36px]">Trending Today</h1>
-            <div className="pt-[30px] flex flex-col gap-4">
-              <img
-                src="https://images.pexels.com/photos/866398/pexels-photo-866398.jpeg?cs=srgb&dl=pexels-ralph-chang-260364-866398.jpg&fm=jpg"
-                className="w-full h-[200px] md:h-[400px] object-cover rounded"
-                alt="Triple Disaster’s Impact on Japan"
-              />
-              <h1 className="text-[22px] md:text-[28px] font-bold">Top 10 Tourist Spots In USA</h1>
-              <h1 className="text-[14px] font-light text-[#C1C1C1]">Date: 23/9/2023</h1>
-              <p className="text-[14px]">
-                Discover the most breathtaking and iconic destinations across the United States. From stunning natural wonders to vibrant cityscapes, explore the top 10 must-visit tourist spots that showcase the diverse beauty and culture of the USA.
-              </p>
+          <h1 className="text-[28px] md:text-[36px] pt-[80px] md:pt-[120px]">Watch Our Show</h1>
+          <div className="pt-[40px]">
+            <div className="flex flex-col xl:flex-row items-start gap-10 xl:gap-16">
+              {/* Text Block */}
+              <div className="mb-8 xl:mb-0 max-w-xl">
+                <h2 className="text-3xl font-semibold text-[22px] md:text-[28px] text-blue-600 mb-4">
+                  Drake Tour Announcement
+                </h2>
+                <h1 className="text-gray-700 mb-6">
+                  Catch all the excitement from Drake's upcoming tour. Watch the official announcement featuring exclusive behind-the-scenes planning and high-energy teasers from the artist himself.
+                </h1>
+                <a
+                  href="https://www.drakemusic.com/tour"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-8 py-3 rounded-full font-medium transition duration-300 hover:shadow-lg"
+                >
+                  Watch Now
+                </a>
+              </div>
+
+              {/* Video Thumbnail with Play Icon */}
+              <div className="w-full max-w-xl">
+                <div className="relative rounded-2xl overflow-hidden aspect-video bg-black/10">
+                  <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                    <div className="w-16 h-16 rounded-full bg-blue-500 flex items-center justify-center">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="text-white ml-1"
+                      >
+                        <polygon points="5 3 19 12 5 21 5 3" />
+                      </svg>
+                    </div>
+                  </div>
+                  <Image
+                    src="https://www.nme.com/wp-content/uploads/2024/09/Drake-live@2000x1270.jpg"
+                    alt="Drake performing"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+              </div>
             </div>
           </div>
 
@@ -114,17 +156,47 @@ export default function Home() {
             <h1 className="text-[28px] md:text-[36px]">Our Shop</h1>
 
             {/* Responsive grid layout: 1-col (mobile), 3-col (laptop), 5-col (desktop) */}
-            <div className="pt-[40px] grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 items-center justify-center gap-[20px]">
+            <div className="flex flex-wrap gap-4 md:pt-[40px] pt-[20px] justify-center">
               {[
-                'https://img01.ztat.net/article/spp-media-p1/c9e50a7d82704a57b54aac72093726d5/f01c2cbb86bf416d82e068f528b2f6a8.jpg?imwidth=762',
-                'https://cdn11.bigcommerce.com/s-c4ko17vpic/images/stencil/1280x1280/products/222/1230/Havana_hemp_set_vktrblak_1_of_9__75385.1688159600.jpg?c=1',
-                'https://media.sezane.com/image/upload/c_fill,d_placeholder_dark.png,fl_progressive:semi,h_816,q_auto:best,w_582/go9sfecuofqfwut1oi3q.jpg',
-                'https://www.shutterstock.com/image-photo/portrait-man-beige-jacket-shirt-600nw-2443171009.jpg',
-                'https://cdn.lookastic.com/looks/shirt-jacket-crew-neck-t-shirt-chinos-large-104240.jpg'
-              ].map((img, i) => (
-                <ShopCards key={i} card={{ image: img, alt: 'Shop Item' }} />
+                {
+                  image: 'https://images.unsplash.com/photo-1543076447-215ad9ba6923?auto=format&fit=crop&w=900&q=80',
+                  alt: 'Men’s Formal Suit',
+                  badge: 'NEW',
+                  title: 'Premium Suit',
+                  subtitle: 'Men’s Formal Collection',
+                  price: '$249.99',
+                },
+                {
+                  image: 'https://images.unsplash.com/photo-1543076447-215ad9ba6923?auto=format&fit=crop&w=900&q=80',
+                  alt: 'Men’s Formal Suit',
+                  badge: 'NEW',
+                  title: 'Premium Suit',
+                  subtitle: 'Men’s Formal Collection',
+                  price: '$249.99',
+                },
+                {
+                  image: 'https://images.unsplash.com/photo-1543076447-215ad9ba6923?auto=format&fit=crop&w=900&q=80',
+                  alt: 'Men’s Formal Suit',
+                  badge: 'NEW',
+                  title: 'Premium Suit',
+                  subtitle: 'Men’s Formal Collection',
+                  price: '$249.99',
+                },
+                {
+                  image: 'https://images.unsplash.com/photo-1543076447-215ad9ba6923?auto=format&fit=crop&w=900&q=80',
+                  alt: 'Men’s Formal Suit',
+                  badge: 'NEW',
+                  title: 'Premium Suit',
+                  subtitle: 'Men’s Formal Collection',
+                  price: '$249.99',
+                },
+              ].map((card, i) => (
+                <ShopCards key={i} card={card} />
               ))}
             </div>
+
+
+
 
             <div className="flex justify-end pt-[20px]">
               <a
