@@ -14,13 +14,10 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { FiTrash2 } from 'react-icons/fi'
 import { CartProvider, useCart } from '@/context/CartContext'
 
-
 const navItems = [
   { label: 'Home', href: '/' },
   { label: 'Shows', href: '/Shows' },
 ]
-
-
 
 export default function Nav() {
   const pathname = usePathname()
@@ -28,7 +25,6 @@ export default function Nav() {
   const [cartOpen, setCartOpen] = useState(false)
   const { cartItems, updateQuantity } = useCart()
   const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0)
-
 
   return (
     <nav className="sticky top-0 z-50">
@@ -51,13 +47,12 @@ export default function Nav() {
           <div className="flex items-center justify-between h-16">
             <div className="flex-shrink-0 text-xl font-bold text-black">Stars</div>
 
-            <div className="flex flex-grow justify-center space-x-6">
+            <div className="hidden md:flex flex-grow justify-center space-x-6">
               {navItems.map(({ label, href }) => (
                 <Link
                   key={href}
                   href={href}
-                  className={`text-black hover:text-blue-500 px-2 py-1 font-bold rounded-md text-sm transition duration-200 ${pathname === href ? 'text-blue-600' : ''
-                    }`}
+                  className={`text-black hover:text-blue-500 px-2 py-1 font-bold rounded-md text-sm transition duration-200 ${pathname === href ? 'text-blue-600' : ''}`}
                 >
                   {label}
                 </Link>
@@ -70,7 +65,7 @@ export default function Nav() {
                 <button
                   aria-label="Shopping Cart"
                   onClick={() => setCartOpen(true)}
-                  className="text-gray-800 hover:text-blue-500 transition text-2xl"
+                  className="text-gray-800 hover:text-blue-500 pt-[6px] transition text-2xl"
                 >
                   <HiOutlineShoppingCart />
                 </button>
@@ -83,7 +78,7 @@ export default function Nav() {
                       animate={{ scale: 1, y: 0 }}
                       exit={{ scale: 0, y: -5 }}
                       transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-                      className="absolute -top-1 -right-1 bg-gradient-to-r from-blue-500 to-blue-600 text-white text-[10px] min-w-[16px] h-[16px] px-[4px] rounded-full flex items-center justify-center font-bold"
+                      className="absolute -top-1 -right-1 bg-gradient-to-r from-blue-500 to-blue-600 text-white text-[10px] min-w-[16px] mt-[6px] h-[16px] px-[4px] rounded-full flex items-center justify-center font-bold"
                     >
                       {totalQuantity}
                     </motion.div>
@@ -102,7 +97,7 @@ export default function Nav() {
                 <button
                   onClick={() => setCartOpen(true)}
                   aria-label="Shopping Cart"
-                  className="text-gray-800 hover:text-blue-500 text-2xl"
+                  className="text-gray-800 hover:text-blue-500 pt-[6px] text-2xl"
                 >
                   <HiOutlineShoppingCart />
                 </button>
@@ -115,7 +110,7 @@ export default function Nav() {
                       animate={{ scale: 1, y: 0 }}
                       exit={{ scale: 0, y: -5 }}
                       transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-                      className="absolute -top-1 -right-1 bg-gradient-to-r from-blue-500 to-blue-600 text-white text-[10px] min-w-[16px] h-[16px] px-[4px] rounded-full flex items-center justify-center font-bold"
+                      className="absolute -top-1 -right-1 bg-gradient-to-r from-blue-500 to-blue-600 text-white mt-[6px] text-[10px] min-w-[16px] h-[16px] px-[4px] rounded-full flex items-center justify-center font-bold"
                     >
                       {totalQuantity}
                     </motion.div>
@@ -134,9 +129,21 @@ export default function Nav() {
           </div>
         </div>
 
-        {/* Mobile Subscribe Dropdown */}
+        {/* Mobile Menu Dropdown with Links */}
         {menuOpen && (
-          <div className="md:hidden glass shadow-sm bg-white px-4 pb-4 pt-2">
+          <div className="md:hidden glass shadow-sm bg-white px-4 pb-6 pt-2 space-y-4">
+            <div className="flex flex-col space-y-2">
+              {navItems.map(({ label, href }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  className={`text-black hover:text-blue-500 px-2 py-1 font-bold rounded-md text-sm transition duration-200 ${pathname === href ? 'text-blue-600' : ''}`}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {label}
+                </Link>
+              ))}
+            </div>
             <button className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white w-full py-2 rounded-full text-sm font-medium transition duration-300 hover:shadow-lg">
               Subscribe
             </button>
@@ -154,10 +161,8 @@ export default function Nav() {
             transition={{ duration: 0.3 }}
             className="fixed top-[96px] right-0 h-[calc(100vh-64px)] w-90 bg-white rounded-bl-md rounded-tl-md text-black z-[999] p-4 overflow-y-auto shadow-xl"
           >
-            <div className="flex justify-between items-center ">
+            <div className="flex justify-between items-center">
               <h2 className="text-[16px] font-bold">Your Cart</h2>
-
-
               <button onClick={() => setCartOpen(false)} aria-label="Close" className="text-black text-2xl">
                 <IoMdClose />
               </button>
@@ -209,38 +214,27 @@ export default function Nav() {
                   ))
                 )}
               </div>
-
-
             </div>
 
-            {/* Divider */}
             <hr className="my-6 border-gray-500" />
 
-            {/* Total */}
             <div className="flex justify-between text-[14px] font-bold mb-2">
               <span>Total Cost :</span>
               <span>
-                {`$${cartItems
-                  .reduce((sum, item) => sum + item.price * item.quantity, 0)
-                  .toFixed(2)}`}
+                {`$${cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)}`}
               </span>
             </div>
 
-
-            {/* Note */}
             <p className="text-xs text-gray-400 text-[12px] mb-6">
               *Total Cost includes delivery charge and tax*
             </p>
 
-            {/* Proceed button */}
             <button className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white w-full py-3 rounded-lg font-semibold text-sm transition duration-300">
               Proceed To Checkout
             </button>
-
           </motion.div>
         )}
       </AnimatePresence>
-
     </nav>
   )
 }
