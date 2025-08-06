@@ -11,32 +11,19 @@ import 'swiper/css/navigation';
 import { Autoplay } from "swiper/modules";
 import ShopCard from '@/Components/Shop-Items';
 
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
+import { motion } from 'framer-motion'
 
 export default function Home() {
-  // Ref for hero banner parallax scroll
-  const heroRef = useRef(null)
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start end", "end start"]
-  })
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "-30%"])
-
   return (
     <div className="bg-white w-full flex flex-col text-black h-full">
       <Nav />
 
-      <div className="px-4 md:px-[60px] xl:px-[120px] py-[14px] w-full max-w-[1400px] mx-auto">
+      <div className="px-4 md:px-[60px] xl:px-[120px] py-[14px] w-full max-w-[1900px] mx-auto">
 
-        {/* Hero Banner with parallax */}
-        <motion.div
-          ref={heroRef}
-          style={{ y }}
-          className="bg-gray-400 w-full h-[200px] md:h-[400px] mt-[120px]"
-        />
+        {/* Hero Banner (static, no parallax) */}
+        <div className="bg-gray-400 w-full h-[200px] md:h-[400px] mt-[120px]" />
 
-        {/* Featured News with fade-up */}
+        {/* Featured News */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -44,13 +31,9 @@ export default function Home() {
           viewport={{ once: true }}
           className="pt-[60px] text-[#191C16]"
         >
-          <h1 className="text-[28px] md:text-[36px] pb-[20px]">
-            Our Featured Star
-          </h1>
+          <h1 className="text-[28px] md:text-[36px] pb-[20px]">Our Featured Star</h1>
 
           <div className="flex flex-col lg:flex-row items-start justify-between gap-6 lg:gap-10">
-
-            {/* Text Block */}
             <div className="flex flex-col items-start text-[#191C16] max-w-full lg:max-w-[480px] order-2 lg:order-1">
               <h1 className="text-[22px] md:text-[28px] font-semibold">
                 Stephen Colbert’s Late Night Allies and Famous Friends Make Cameos on The Late Show After Cancellation
@@ -64,7 +47,6 @@ export default function Home() {
               </button>
             </div>
 
-            {/* Image Block */}
             <img
               src="https://www.hollywoodreporter.com/wp-content/uploads/2025/07/Stephen-Colbert-late-show-publicity-H-2025.png?w=488&h=331&crop=1&resize=488%2C331"
               className="w-full lg:w-[588px] rounded-lg h-auto order-1 lg:order-2"
@@ -73,7 +55,7 @@ export default function Home() {
           </div>
         </motion.div>
 
-        {/* This Week’s Top News with fade-up */}
+        {/* This Week’s Top Stars */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -95,31 +77,31 @@ export default function Home() {
                   image: 'https://i.scdn.co/image/ab6761610000e5ebe672b5f553298dcdccb0e676',
                   alt: 'Taylor Swift',
                   name: 'Taylor Swift',
-                  views: '2.3M views',
+                  views: 'American singer-songwriter who started in country music and transitioned to pop.',
                 },
                 {
                   image: 'https://i.scdn.co/image/ab6761610000e5eb9e528993a2820267b97f6aae',
                   alt: 'The Weeknd',
                   name: 'The Weeknd',
-                  views: '1.9M views',
+                  views: 'Canadian singer and producer with a signature mix of R&B, pop, and synth.',
                 },
                 {
                   image: 'https://i.scdn.co/image/ab6761610000e5eb4a21b4760d2ecb7b0dcdc8da',
                   alt: 'Billie Eilish',
                   name: 'Billie Eilish',
-                  views: '2.1M views',
+                  views: 'American singer-songwriter known for her whispery vocals and dark, introspective pop.',
                 },
                 {
                   image: 'https://i.scdn.co/image/ab6761610000e5eb4293385d324db8558179afd9',
                   alt: 'Drake',
                   name: 'Drake',
-                  views: '3.4M views',
+                  views: 'Canadian rapper, singer, and songwriter known for blending hip-hop and R&B.',
                 },
                 {
                   image: 'https://i.scdn.co/image/ab6761610000e5ebc36dd9eb55fb0db4911f25dd',
                   alt: 'Bruno Mars',
                   name: 'Bruno Mars',
-                  views: '2.7M views',
+                  views: 'American singer, songwriter, and performer with a retro funk and soul style.',
                 }
               ].map((card, index) => (
                 <SwiperSlide key={index} className="!w-[280px] sm:!w-[329px] p-5">
@@ -130,7 +112,7 @@ export default function Home() {
           </div>
         </motion.div>
 
-        {/* Watch Our Show with fade-up */}
+        {/* Watch Our Show */}
         <motion.div
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -139,10 +121,7 @@ export default function Home() {
           className="pt-[80px] md:pt-[120px]"
         >
           <div className="pt-[20px] md:pt-[40px]">
-            
             <div className="flex flex-col xl:flex-row items-start gap-[0px] md:gap-6 xl:gap-16">
-
-              {/* Text Block */}
               <div className="mb-8 xl:mb-0 gap-[10px] max-w-xl">
                 <h1 className="text-[28px] md:text-[36px]">Watch Our Show</h1>
                 <h2 className="text-3xl font-semibold text-[22px] md:text-[28px] text-blue-600 mb-4">
@@ -161,7 +140,6 @@ export default function Home() {
                 </a>
               </div>
 
-              {/* Video Thumbnail with Play Icon */}
               <div className="w-full max-w-xl">
                 <div className="relative rounded-2xl overflow-hidden aspect-video bg-black/10">
                   <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
@@ -191,12 +169,11 @@ export default function Home() {
                   />
                 </div>
               </div>
-
             </div>
           </div>
         </motion.div>
 
-        {/* Shop Section with fade-up */}
+        {/* Shop Section */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -238,7 +215,9 @@ export default function Home() {
                 id={card.id}
                 name={card.name}
                 price={card.price}
-                image={card.image} subtitle={''} />
+                image={card.image}
+                subtitle=""
+              />
             ))}
           </div>
 
@@ -254,10 +233,9 @@ export default function Home() {
 
       </div>
 
-      {/* Footer */}
       <div className="pt-[40px]">
         <Footer />
       </div>
     </div>
-  );
+  )
 }
