@@ -7,10 +7,10 @@ import {
 } from 'react-icons/fa'
 import { SiTiktok } from 'react-icons/si'
 import { HiOutlineShoppingCart } from 'react-icons/hi'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FiMenu, FiX } from 'react-icons/fi'
 import { IoMdClose } from 'react-icons/io'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useTransform, useScroll } from 'framer-motion'
 import { FiTrash2 } from 'react-icons/fi'
 import { CartProvider, useCart } from '@/context/CartContext'
 
@@ -20,55 +20,144 @@ const navItems = [
 ]
 
 export default function Nav() {
-  const pathname = usePathname()
+  const pathname = usePathname();
+  const { scrollY } = useScroll()
   const [menuOpen, setMenuOpen] = useState(false)
   const [cartOpen, setCartOpen] = useState(false)
   const { cartItems, updateQuantity } = useCart()
   const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0)
 
+  const [windowHeight, setWindowHeight] = useState(0)
+
+  useEffect(() => {
+    setWindowHeight(window.innerHeight)
+  }, [])
+
+  // Create a transform from scrollY: 0 -> windowHeight maps to 0 -> 1
+  // Then interpolate color from white to black based on this progress.
+  // framer-motion supports colors in string.
+
+  const scrollProgress = useTransform(scrollY, [0, windowHeight || 1], [0, 1])
+
+  // Interpolate text color for nav items
+  // white = rgb(255,255,255), black = rgb(0,0,0)
+  const textColor = useTransform(
+    scrollProgress,
+    [0, 1],
+    ['rgb(255,255,255)', 'rgb(0,0,0)']
+  )
+
   return (
-    <nav className="sticky top-0 z-50">
+    <nav className="fixed top-0 z-50 w-full left-0">
       {/* Top Social Bar */}
-      <div className="bg-black text-white text-sm h-8">
+      <motion.div
+        className="bg-black text-sm h-8 text-white"
+
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap justify-center items-center h-full space-x-4 sm:space-x-6 overflow-x-auto">
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition text-sm sm:text-xl"><FaFacebookF /></a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-pink-500 transition text-sm sm:text-xl"><FaInstagram /></a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition text-sm sm:text-xl"><FaTwitter /></a>
-          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="hover:text-red-600 transition text-sm sm:text-xl"><FaYoutube /></a>
-          <a href="https://twitch.tv" target="_blank" rel="noopener noreferrer" className="hover:text-purple-600 transition text-sm sm:text-xl"><FaTwitch /></a>
-          <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="hover:text-red-600 transition text-sm sm:text-xl"><SiTiktok /></a>
-          <a href="https://soundcloud.com" target="_blank" rel="noopener noreferrer" className="hover:text-orange-500 transition text-sm sm:text-xl"><FaSoundcloud /></a>
+          <a
+            href="https://facebook.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-blue-500 transition text-sm sm:text-xl"
+
+          >
+            <FaFacebookF />
+          </a>
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-pink-500 transition text-sm sm:text-xl"
+
+          >
+            <FaInstagram />
+          </a>
+          <a
+            href="https://twitter.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-blue-400 transition text-sm sm:text-xl"
+
+          >
+            <FaTwitter />
+          </a>
+          <a
+            href="https://youtube.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-red-600 transition text-sm sm:text-xl"
+
+          >
+            <FaYoutube />
+          </a>
+          <a
+            href="https://twitch.tv"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-purple-600 transition text-sm sm:text-xl"
+
+          >
+            <FaTwitch />
+          </a>
+          <a
+            href="https://tiktok.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-red-600 transition text-sm sm:text-xl"
+
+          >
+            <SiTiktok />
+          </a>
+          <a
+            href="https://soundcloud.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-orange-500 transition text-sm sm:text-xl"
+
+          >
+            <FaSoundcloud />
+          </a>
         </div>
-      </div>
+      </motion.div>
 
       {/* Main Nav */}
       <div className="glass shadow-sm bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <div className="flex-shrink-0 text-xl font-bold text-black">Stars</div>
+            <motion.div
+              className="flex-shrink-0 text-xl font-bold"
+              style={{ color: textColor }}
+            >
+              Stars
+            </motion.div>
 
             <div className="hidden md:flex flex-grow justify-center space-x-6">
               {navItems.map(({ label, href }) => (
-                <Link
-                  key={href}
-                  href={href}
-                  className={`text-black hover:text-blue-500 px-2 py-1 font-bold rounded-md text-sm transition duration-200 ${pathname === href ? 'text-blue-600' : ''}`}
+                <motion.a
+                  key={href} href={href}
+                  style={{ color: textColor }}
+                  className={`hover:text-blue-500 px-2 py-1 font-bold rounded-md text-sm transition duration-200 ${pathname === href ? 'text-blue-600' : ''}`}
+                  onClick={() => setMenuOpen(false)}
                 >
                   {label}
-                </Link>
+                </motion.a>
               ))}
             </div>
+
 
             {/* Desktop Right */}
             <div className="hidden md:flex items-center space-x-6 flex-shrink-0">
               <div className="relative">
-                <button
-                  aria-label="Shopping Cart"
+                <motion.button
                   onClick={() => setCartOpen(true)}
-                  className="text-gray-800 hover:text-blue-500 pt-[6px] transition text-2xl"
+                  aria-label="Shopping Cart"
+                  className="pt-[6px] text-2xl"
+                  style={{ color: textColor }}
                 >
                   <HiOutlineShoppingCart />
-                </button>
+                </motion.button>
+
 
                 <AnimatePresence>
                   {totalQuantity > 0 && (
@@ -94,13 +183,14 @@ export default function Nav() {
             {/* Mobile Right */}
             <div className="md:hidden flex items-center space-x-4">
               <div className="relative">
-                <button
+                <motion.button
                   onClick={() => setCartOpen(true)}
                   aria-label="Shopping Cart"
-                  className="text-gray-800 hover:text-blue-500 pt-[6px] text-2xl"
+                  className="pt-[6px] text-2xl"
+                  style={{ color: textColor }}
                 >
                   <HiOutlineShoppingCart />
-                </button>
+                </motion.button>
 
                 <AnimatePresence>
                   {totalQuantity > 0 && (
@@ -118,18 +208,17 @@ export default function Nav() {
                 </AnimatePresence>
               </div>
 
-              <button
+              <motion.button
                 onClick={() => setMenuOpen(!menuOpen)}
-                className="text-gray-800 text-2xl"
+                className="text-2xl"
                 aria-label="Toggle Menu"
+                style={{ color: textColor }}
               >
                 {menuOpen ? <FiX /> : <FiMenu />}
-              </button>
+              </motion.button>
             </div>
           </div>
         </div>
-
-        {/* Mobile Menu Dropdown with Links */}
         {menuOpen && (
           <div className="md:hidden glass shadow-sm bg-white px-4 pb-6 pt-2 space-y-4">
             <div className="flex flex-col space-y-2">
@@ -137,7 +226,8 @@ export default function Nav() {
                 <Link
                   key={href}
                   href={href}
-                  className={`text-black hover:text-blue-500 px-2 py-1 font-bold rounded-md text-sm transition duration-200 ${pathname === href ? 'text-blue-600' : ''}`}
+                  className={`text-black hover:text-blue-500 px-2 py-1 font-bold rounded-md text-sm transition duration-200 ${pathname === href ? 'text-blue-600' : ''
+                    }`}
                   onClick={() => setMenuOpen(false)}
                 >
                   {label}
