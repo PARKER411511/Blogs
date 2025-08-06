@@ -9,6 +9,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Autoplay } from "swiper/modules";
+import ShopCard from '@/Components/Shop-Items';
 
 
 
@@ -94,7 +95,7 @@ export default function Home() {
                 </SwiperSlide>
               ))}
             </Swiper>
-            
+
           </div>
 
           <h1 className="text-[28px] md:text-[36px] pt-[80px] md:pt-[120px]">Watch Our Show</h1>
@@ -152,51 +153,45 @@ export default function Home() {
           </div>
 
           {/* Shop Section */}
+          {/* Shop Section */}
           <div className="pt-[80px] md:pt-[120px]">
             <h1 className="text-[28px] md:text-[36px]">Our Shop</h1>
 
-            {/* Responsive grid layout: 1-col (mobile), 3-col (laptop), 5-col (desktop) */}
             <div className="flex flex-wrap gap-4 md:pt-[40px] pt-[20px] justify-center">
               {[
                 {
+                  id: 'suit-1',
                   image: 'https://images.unsplash.com/photo-1543076447-215ad9ba6923?auto=format&fit=crop&w=900&q=80',
-                  alt: 'Men’s Formal Suit',
-                  badge: 'NEW',
-                  title: 'Premium Suit',
-                  subtitle: 'Men’s Formal Collection',
-                  price: '$249.99',
+                  name: 'Premium Suit',
+                  price: 249.99,
                 },
                 {
+                  id: 'suit-2',
                   image: 'https://images.unsplash.com/photo-1543076447-215ad9ba6923?auto=format&fit=crop&w=900&q=80',
-                  alt: 'Men’s Formal Suit',
-                  badge: 'NEW',
-                  title: 'Premium Suit',
-                  subtitle: 'Men’s Formal Collection',
-                  price: '$249.99',
+                  name: 'Classic Suit',
+                  price: 199.99,
                 },
                 {
+                  id: 'suit-3',
                   image: 'https://images.unsplash.com/photo-1543076447-215ad9ba6923?auto=format&fit=crop&w=900&q=80',
-                  alt: 'Men’s Formal Suit',
-                  badge: 'NEW',
-                  title: 'Premium Suit',
-                  subtitle: 'Men’s Formal Collection',
-                  price: '$249.99',
+                  name: 'Modern Suit',
+                  price: 279.99,
                 },
                 {
+                  id: 'suit-4',
                   image: 'https://images.unsplash.com/photo-1543076447-215ad9ba6923?auto=format&fit=crop&w=900&q=80',
-                  alt: 'Men’s Formal Suit',
-                  badge: 'NEW',
-                  title: 'Premium Suit',
-                  subtitle: 'Men’s Formal Collection',
-                  price: '$249.99',
+                  name: 'Luxury Suit',
+                  price: 349.99,
                 },
-              ].map((card, i) => (
-                <ShopCards key={i} card={card} />
+              ].map((card) => (
+                <ShopCard
+                  key={card.id}
+                  id={card.id}
+                  name={card.name}
+                  price={card.price}
+                  image={card.image} subtitle={''} />
               ))}
             </div>
-
-
-
 
             <div className="flex justify-end pt-[20px]">
               <a
@@ -207,8 +202,6 @@ export default function Home() {
               </a>
             </div>
           </div>
-
-
         </div>
       </div>
 

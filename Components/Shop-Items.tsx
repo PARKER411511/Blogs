@@ -1,39 +1,68 @@
 'use client'
 
-export default function ShopCards({
-  card
-}: {
-  card: {
-    image: string
-    alt: string
-    badge?: string
-    title: string
-    subtitle: string
-    price: string
+import { useCart } from '@/context/CartContext'
+import { HiOutlineShoppingCart } from 'react-icons/hi'
+import { useState, useEffect } from 'react'
+
+interface ShopCardProps {
+  id: string
+  name: string
+  subtitle: string
+  price: number
+  image: string
+  badge?: string
+}
+
+export default function ShopCard({ id, name, subtitle, price, image, badge }: ShopCardProps) {
+  const { addToCart } = useCart()
+  const [showAdded, setShowAdded] = useState(false)
+
+  const handleAdd = () => {
+    addToCart({ id, name, price, image })
+    setShowAdded(true)
   }
-}) {
+
+  useEffect(() => {
+    if (showAdded) {
+      const timer = setTimeout(() => setShowAdded(false), 2000) // Hide after 2 seconds
+      return () => clearTimeout(timer)
+    }
+  }, [showAdded])
+
   return (
-    <div className="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition w-[260px]">
+    <div className="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition w-[260px] relative">
       <div className="relative w-full h-[260px]">
         <img
-          src={card.image}
-          alt={card.alt}
+          src={image}
+          alt={name}
           className="w-full h-full object-cover"
         />
-        {card.badge && (
+        {badge && (
           <span className="absolute top-2 right-2 bg-blue-100 text-blue-800 text-[10px] font-semibold px-1.5 py-0.5 rounded-full">
-            {card.badge}
+            {badge}
           </span>
         )}
       </div>
       <div className="p-2">
-        <h3 className="font-semibold text-sm mb-0.5">{card.title}</h3>
-        <p className="text-xs text-gray-500 mb-2">{card.subtitle}</p>
-        <div className="flex justify-between items-center">
-          <span className="font-bold text-blue-600 text-sm">{card.price}</span>
-          <button className="h-6 w-6 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white text-xs flex items-center justify-center hover:bg-rose-600 transition">
-            +
+        <h3 className="font-semibold text-sm mb-0.5">{name}</h3>
+        <p className="text-xs text-gray-500 mb-2">{subtitle}</p>
+        <div className="flex justify-between items-center relative">
+          <span className="font-bold text-blue-600 text-sm">${price.toFixed(2)}</span>
+
+          <button
+            onClick={handleAdd}
+            className="h-6 w-6 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white flex items-center justify-center hover:bg-rose-600 transition relative"
+            aria-label={`Add ${name} to cart`}
+          >
+            <HiOutlineShoppingCart className="text-xs" />
           </button>
+
+          {/* Popup message */}
+          {showAdded && (
+            <div className="absolute top-[-24px] right-0 bg-black text-white text-xs rounded px-2 py-1 shadow-lg select-none">
+              Added to cart
+            </div>
+          )}
         </div>
       </div>
     </div>

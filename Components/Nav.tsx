@@ -11,34 +11,13 @@ import { useState } from 'react'
 import { FiMenu, FiX } from 'react-icons/fi'
 import { IoMdClose } from 'react-icons/io'
 import { motion, AnimatePresence } from 'framer-motion'
+import { FiTrash2 } from 'react-icons/fi'
+import { CartProvider, useCart } from '@/context/CartContext'
+
 
 const navItems = [
   { label: 'Home', href: '/' },
   { label: 'Shows', href: '/Shows' },
-]
-
-const mockCart = [
-  {
-    id: 'TS001',
-    name: 'Graphic T-Shirt',
-    price: '$19.99',
-    quantity: 2,
-    image: 'https://ih1.redbubble.net/image.1065595507.9794/ssrco,essential_tee,womens_01,fafafa:ca443f4786,front_lifestyle,tall_portrait,x1000.1.jpg',
-  },
-  {
-    id: 'HD002',
-    name: 'Oversized Hoodie',
-    price: '$39.99',
-    quantity: 1,
-    image: 'https://nobero.com/cdn/shop/files/222C021C-8EFF-4A86-A782-A25876663738.jpg?v=1732879745',
-  },
-  {
-    id: 'JN003',
-    name: 'Denim Jeans',
-    price: '$49.99',
-    quantity: 1,
-    image: 'https://www.routeone.co.uk/cdn/shop/files/001115118.jpg?v=1732857568&width=1000',
-  },
 ]
 
 
@@ -47,6 +26,9 @@ export default function Nav() {
   const pathname = usePathname()
   const [menuOpen, setMenuOpen] = useState(false)
   const [cartOpen, setCartOpen] = useState(false)
+  const { cartItems, updateQuantity } = useCart()
+  const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0)
+
 
   return (
     <nav className="sticky top-0 z-50">
@@ -84,13 +66,31 @@ export default function Nav() {
 
             {/* Desktop Right */}
             <div className="hidden md:flex items-center space-x-6 flex-shrink-0">
-              <button
-                aria-label="Shopping Cart"
-                onClick={() => setCartOpen(true)}
-                className="text-gray-800 hover:text-blue-500 transition text-2xl"
-              >
-                <HiOutlineShoppingCart />
-              </button>
+              <div className="relative">
+                <button
+                  aria-label="Shopping Cart"
+                  onClick={() => setCartOpen(true)}
+                  className="text-gray-800 hover:text-blue-500 transition text-2xl"
+                >
+                  <HiOutlineShoppingCart />
+                </button>
+
+                <AnimatePresence>
+                  {totalQuantity > 0 && (
+                    <motion.div
+                      key={totalQuantity}
+                      initial={{ scale: 0, y: -5 }}
+                      animate={{ scale: 1, y: 0 }}
+                      exit={{ scale: 0, y: -5 }}
+                      transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                      className="absolute -top-1 -right-1 bg-gradient-to-r from-blue-500 to-blue-600 text-white text-[10px] min-w-[16px] h-[16px] px-[4px] rounded-full flex items-center justify-center font-bold"
+                    >
+                      {totalQuantity}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
               <button className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-4 py-2 rounded-full text-sm font-medium transition duration-300 hover:shadow-lg">
                 Subscribe
               </button>
@@ -98,13 +98,31 @@ export default function Nav() {
 
             {/* Mobile Right */}
             <div className="md:hidden flex items-center space-x-4">
-              <button
-                onClick={() => setCartOpen(true)}
-                aria-label="Shopping Cart"
-                className="text-gray-800 hover:text-blue-500 text-2xl"
-              >
-                <HiOutlineShoppingCart />
-              </button>
+              <div className="relative">
+                <button
+                  onClick={() => setCartOpen(true)}
+                  aria-label="Shopping Cart"
+                  className="text-gray-800 hover:text-blue-500 text-2xl"
+                >
+                  <HiOutlineShoppingCart />
+                </button>
+
+                <AnimatePresence>
+                  {totalQuantity > 0 && (
+                    <motion.div
+                      key={totalQuantity}
+                      initial={{ scale: 0, y: -5 }}
+                      animate={{ scale: 1, y: 0 }}
+                      exit={{ scale: 0, y: -5 }}
+                      transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                      className="absolute -top-1 -right-1 bg-gradient-to-r from-blue-500 to-blue-600 text-white text-[10px] min-w-[16px] h-[16px] px-[4px] rounded-full flex items-center justify-center font-bold"
+                    >
+                      {totalQuantity}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
               <button
                 onClick={() => setMenuOpen(!menuOpen)}
                 className="text-gray-800 text-2xl"
@@ -134,61 +152,80 @@ export default function Nav() {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ duration: 0.3 }}
-            className="fixed top-[96px] right-0 h-[calc(100vh-64px)] w-90 bg-[#191919] rounded-bl-md rounded-tl-md text-white z-[999] p-4 overflow-y-auto shadow-xl"
+            className="fixed top-[96px] right-0 h-[calc(100vh-64px)] w-90 bg-white rounded-bl-md rounded-tl-md text-black z-[999] p-4 overflow-y-auto shadow-xl"
           >
             <div className="flex justify-between items-center ">
               <h2 className="text-[16px] font-bold">Your Cart</h2>
 
 
-              <button onClick={() => setCartOpen(false)} aria-label="Close" className="text-white text-2xl">
+              <button onClick={() => setCartOpen(false)} aria-label="Close" className="text-black text-2xl">
                 <IoMdClose />
               </button>
             </div>
 
-            <hr className="my-6 border-white" />
+            <hr className="my-6 border-gray-500" />
 
             <div className="space-y-6">
-              {mockCart.map((item) => (
-                <div key={item.id} className="flex items-center justify-between gap-1">
-                  {/* Image */}
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-12 h-12 rounded-full object-cover border-1 border-white"
-                  />
-
-                  {/* Info */}
-                  <div className="flex-1 ml-4">
-                    <div className="font-bold text-[14px]">{item.name}</div>
-                    <div className="text-gray-400 text-[12px]">Clothing & Apparel</div>
-                    <div className="text-[11px] text-gray-400 mt-1">ID: {item.id}</div>
-                    <div className="text-[11px] text-gray-400">Qty: {item.quantity}</div>
+              <div className="space-y-6">
+                {cartItems.length === 0 ? (
+                  <div className="flex flex-col items-center justify-center py-20 text-gray-500">
+                    <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center mb-3">
+                      <HiOutlineShoppingCart className="text-gray-400 text-xl" />
+                    </div>
+                    <p className="text-sm text-gray-500">Your cart is empty</p>
                   </div>
+                ) : (
+                  cartItems.map((item) => (
+                    <div key={item.id} className="flex items-center justify-between gap-1">
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className="w-12 h-12 rounded-lg object-cover border-1 border-gray-500"
+                      />
+                      <div className="flex-1 ml-4">
+                        <div className="font-bold text-[14px]">{item.name}</div>
+                        <div className="text-gray-400 text-[12px]">Clothing & Apparel</div>
+                        <div className="text-[11px] text-gray-400 mt-1">ID: {item.id}</div>
+                        <div className="flex items-center gap-2 mt-2">
+                          <button
+                            className="w-7 h-7 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 text-white text-sm"
+                            onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                          >
+                            –
+                          </button>
+                          <span className="text-[13px]">{item.quantity}</span>
+                          <button
+                            className="w-7 h-7 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 text-white text-sm"
+                            onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
+                      <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-3 py-1 rounded-md font-semibold text-sm">
+                        {item.price}
+                      </div>
+                    </div>
+                  ))
+                )}
+              </div>
 
-                  {/* Price pill */}
-                  <div className="bg-white text-black px-3 py-1 rounded-md font-semibold text-sm">
-                    {item.price}
-                  </div>
-                </div>
-              ))}
+
             </div>
 
             {/* Divider */}
-            <hr className="my-6 border-white" />
+            <hr className="my-6 border-gray-500" />
 
             {/* Total */}
             <div className="flex justify-between text-[14px] font-bold mb-2">
               <span>Total Cost :</span>
               <span>
-                {`$${mockCart
-                  .reduce(
-                    (sum, item) =>
-                      sum + parseFloat(item.price.replace('$', '')) * item.quantity,
-                    0
-                  )
+                {`$${cartItems
+                  .reduce((sum, item) => sum + item.price * item.quantity, 0)
                   .toFixed(2)}`}
               </span>
             </div>
+
 
             {/* Note */}
             <p className="text-xs text-gray-400 text-[12px] mb-6">
@@ -199,6 +236,7 @@ export default function Nav() {
             <button className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white w-full py-3 rounded-lg font-semibold text-sm transition duration-300">
               Proceed To Checkout
             </button>
+
           </motion.div>
         )}
       </AnimatePresence>
