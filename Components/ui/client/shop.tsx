@@ -10,7 +10,7 @@ export default function Shop() {
             viewport={{ once: true }}
             className="pt-[80px] md:pt-[120px]"
         >
-            <h1 className="text-[28px] md:text-[36px]">Our Shop</h1>
+            <h1 className="text-[28px] font-extrabold md:text-[36px]">Our Shop</h1>
 
             <div className="flex flex-wrap gap-4 md:pt-[40px] pt-[30px] justify-center">
                 {[
@@ -51,7 +51,7 @@ export default function Shop() {
             <div className="flex justify-end pt-[20px]">
                 <a
                     href="/Shops"
-                    className="text-[#191C16] font-semibold text-[15px] border-b-[2px] border-[#191C16] pb-[1px] transition"
+                    className="text-white font-semibold text-[15px] border-b-[2px] border-white pb-[1px] transition"
                 >
                     See More
                 </a>

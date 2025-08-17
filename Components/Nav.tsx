@@ -33,25 +33,14 @@ export default function Nav() {
     setWindowHeight(window.innerHeight)
   }, [])
 
-  // Create a transform from scrollY: 0 -> windowHeight maps to 0 -> 1
-  // Then interpolate color from white to black based on this progress.
-  // framer-motion supports colors in string.
-
   const scrollProgress = useTransform(scrollY, [0, windowHeight || 1], [0, 1])
 
-  // Interpolate text color for nav items
-  // white = rgb(255,255,255), black = rgb(0,0,0)
-  const textColor = useTransform(
-    scrollProgress,
-    [0, 1],
-    ['rgb(255,255,255)', 'rgb(0,0,0)']
-  )
 
   return (
     <nav className="fixed top-0 z-50 w-full left-0">
       {/* Top Social Bar */}
       <motion.div
-        className="bg-black text-sm h-8 text-white"
+        className="bg-black text-sm h-[32px] text-white"
 
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap justify-center items-center h-full space-x-4 sm:space-x-6 overflow-x-auto">
@@ -127,7 +116,6 @@ export default function Nav() {
           <div className="flex items-center justify-between h-16">
             <motion.div
               className="flex-shrink-0 text-xl font-bold"
-              style={{ color: textColor }}
             >
               Stars
             </motion.div>
@@ -136,7 +124,6 @@ export default function Nav() {
               {navItems.map(({ label, href }) => (
                 <motion.a
                   key={href} href={href}
-                  style={{ color: textColor }}
                   className={`hover:text-blue-500 px-2 py-1 font-bold rounded-md text-sm transition duration-200 ${pathname === href ? 'text-blue-600' : ''}`}
                   onClick={() => setMenuOpen(false)}
                 >
@@ -153,7 +140,6 @@ export default function Nav() {
                   onClick={() => setCartOpen(true)}
                   aria-label="Shopping Cart"
                   className="pt-[6px] text-2xl"
-                  style={{ color: textColor }}
                 >
                   <HiOutlineShoppingCart />
                 </motion.button>
@@ -187,7 +173,6 @@ export default function Nav() {
                   onClick={() => setCartOpen(true)}
                   aria-label="Shopping Cart"
                   className="pt-[6px] text-2xl"
-                  style={{ color: textColor }}
                 >
                   <HiOutlineShoppingCart />
                 </motion.button>
@@ -212,33 +197,33 @@ export default function Nav() {
                 onClick={() => setMenuOpen(!menuOpen)}
                 className="text-2xl"
                 aria-label="Toggle Menu"
-                style={{ color: textColor }}
               >
                 {menuOpen ? <FiX /> : <FiMenu />}
               </motion.button>
             </div>
           </div>
         </div>
-        {menuOpen && (
-          <div className="md:hidden glass shadow-sm bg-white px-4 pb-6 pt-2 space-y-4">
-            <div className="flex flex-col space-y-2">
-              {navItems.map(({ label, href }) => (
-                <Link
-                  key={href}
-                  href={href}
-                  className={`text-black hover:text-blue-500 px-2 py-1 font-bold rounded-md text-sm transition duration-200 ${pathname === href ? 'text-blue-600' : ''
-                    }`}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {label}
-                </Link>
-              ))}
-            </div>
-            <button className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white w-full py-2 rounded-full text-sm font-medium transition duration-300 hover:shadow-lg">
-              Subscribe
-            </button>
-          </div>
-        )}
+{menuOpen && (
+  <div className="md:hidden glass shadow-sm bg-white px-4 pb-6 pt-2 text-[14px] space-y-4">
+    <div className="flex flex-col space-y-2">
+      {navItems.map(({ label, href }) => (
+        <Link
+          key={href}
+          href={href}
+          className={`px-2 py-1 font-bold rounded-md text-sm transition duration-200 
+            ${pathname === href ? 'text-blue-600' : 'text-white hover:text-blue-700'}`}
+          onClick={() => setMenuOpen(false)}
+        >
+          {label}
+        </Link>
+      ))}
+    </div>
+    <button className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white w-full py-2 rounded-full text-sm font-medium transition duration-300 hover:shadow-lg">
+      Subscribe
+    </button>
+  </div>
+)}
+
       </div>
 
       {/* Cart Drawer with Framer Motion */}
@@ -249,11 +234,11 @@ export default function Nav() {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ duration: 0.3 }}
-            className="fixed top-[96px] right-0 h-[calc(100vh-64px)] w-90 bg-white rounded-bl-md rounded-tl-md text-black z-[999] p-4 overflow-y-auto shadow-xl"
+            className="fixed top-[96px] right-0 h-[calc(100vh-64px)] w-90 bg-white glass rounded-bl-md rounded-tl-md text-white z-[999] p-4 overflow-y-auto shadow-xl"
           >
             <div className="flex justify-between items-center">
               <h2 className="text-[16px] font-bold">Your Cart</h2>
-              <button onClick={() => setCartOpen(false)} aria-label="Close" className="text-black text-2xl">
+              <button onClick={() => setCartOpen(false)} aria-label="Close" className="text-white text-2xl">
                 <IoMdClose />
               </button>
             </div>
@@ -264,10 +249,10 @@ export default function Nav() {
               <div className="space-y-6">
                 {cartItems.length === 0 ? (
                   <div className="flex flex-col items-center justify-center py-20 text-gray-500">
-                    <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center mb-3">
-                      <HiOutlineShoppingCart className="text-gray-400 text-xl" />
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center mb-3">
+                      <HiOutlineShoppingCart className="text-white text-xl" />
                     </div>
-                    <p className="text-sm text-gray-500">Your cart is empty</p>
+                    <p className="text-sm text-white">Your cart is empty</p>
                   </div>
                 ) : (
                   cartItems.map((item) => (

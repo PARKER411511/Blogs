@@ -30,8 +30,8 @@ export default function ShopCard({ id, name, subtitle, price, image, badge }: Sh
   }, [showAdded])
 
   return (
-    <div className="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition w-[260px] relative">
-      <div className="relative w-full h-[260px]">
+    <div className="bg-white glass rounded-[10px] shadow-sm overflow-hidden hover:shadow-md transition  w-[260px] h-min-[324px] relative">
+      <div className="relative w-full h-[280px]">
         <img
           src={image}
           alt={name}
@@ -43,7 +43,7 @@ export default function ShopCard({ id, name, subtitle, price, image, badge }: Sh
           </span>
         )}
       </div>
-      <div className="p-2">
+      <div className="p-4">
         <h3 className="font-semibold text-sm mb-0.5">{name}</h3>
         <p className="text-xs text-gray-500 mb-2">{subtitle}</p>
         <div className="flex justify-between items-center relative">
@@ -51,10 +51,10 @@ export default function ShopCard({ id, name, subtitle, price, image, badge }: Sh
 
           <button
             onClick={handleAdd}
-            className="h-6 w-6 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white flex items-center justify-center hover:bg-rose-600 transition relative"
+            className=" w-[100px] h-[36px] rounded-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white flex items-center justify-center hover:bg-rose-600 transition relative"
             aria-label={`Add ${name} to cart`}
           >
-            <HiOutlineShoppingCart className="text-xs" />
+            <h1 className='text-[12px] font-semibold'>Add To Cart</h1>
           </button>
 
           {/* Popup message */}

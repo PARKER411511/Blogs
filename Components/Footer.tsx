@@ -2,12 +2,12 @@
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-50 py-16 px-4 sm:px-6 lg:px-8" data-uid="R5ILCUznPQL17suCCtbEl">
+    <footer className="bg-[#151515] py-16 px-4 sm:px-6 lg:px-8" data-uid="R5ILCUznPQL17suCCtbEl">
       <div className="max-w-7xl mx-auto" data-uid="WAVOSyFb_wDZ5darjGJ14">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12" data-uid="i7msYWjVB9oakA0BpRhaw">
           <div data-uid="NdDztAbI4qQHPREpFM0aC">
             <span className="text-2xl font-bold gradient-text" data-uid="JJueMI5RTWx4OoaKWep8F">Stars</span>
-            <p className="mt-4 text-gray-700" data-uid="rRSXi58S3U6SwMFpjsX0a">
+            <p className="mt-4 text-white" data-uid="rRSXi58S3U6SwMFpjsX0a">
               The #1 source for exclusive Articles and Blogs
             </p>
           </div>
@@ -15,12 +15,12 @@ export default function Footer() {
             <h4 className="text-lg font-bold mb-4" data-uid="2dzhIZgSj5vJJhbyqY7aD">Sections</h4>
             <ul className="space-y-2" data-uid="RdPwsoP0s_mw9t1Uka9Gl">
               <li data-uid="4Eu7uoKULrDx3pRzYQnNj">
-                <a href="#" className="text-gray-700 hover:text-blue-500 transition duration-200" data-uid="kUAg_NkeKKA7RAh4xhZo5">
+                <a href="#" className="text-white hover:text-blue-500 transition duration-200" data-uid="kUAg_NkeKKA7RAh4xhZo5">
                   Latest News
                 </a>
               </li>
               <li data-uid="q-isEyXGwJRwFTgl0q8ba">
-                <a href="#" className="text-gray-700 hover:text-blue-500 transition duration-200" data-uid="rGWJ36OI8qj3bFGE2TOPM">
+                <a href="#" className="text-white hover:text-blue-500 transition duration-200" data-uid="rGWJ36OI8qj3bFGE2TOPM">
                   Exclusive Blogs
                 </a>
               </li>
@@ -31,22 +31,22 @@ export default function Footer() {
             <h4 className="text-lg font-bold mb-4" data-uid="CVQXGtVb3LRmk_yd6tV8K">Company</h4>
             <ul className="space-y-2" data-uid="T8XdType6brv2zW0KmJSG">
               <li data-uid="U3v_MA2bGz2IkOuXfVPWE">
-                <a href="#" className="text-gray-700 hover:text-blue-500 transition duration-200" data-uid="nBYlQL88HTHrw6B47zsAd">
+                <a href="#" className="text-white hover:text-blue-500 transition duration-200" data-uid="nBYlQL88HTHrw6B47zsAd">
                   About Us
                 </a>
               </li>
               <li data-uid="NWqbbC4j-6JdYg-okex8u">
-                <a href="#" className="text-gray-700 hover:text-blue-500 transition duration-200" data-uid="1qmTGoQOxc3JuYCoYH_wn">
+                <a href="#" className="text-white hover:text-blue-500 transition duration-200" data-uid="1qmTGoQOxc3JuYCoYH_wn">
                   Careers
                 </a>
               </li>
               <li data-uid="EoDDxJxq96n-u6uDP01VY">
-                <a href="#" className="text-gray-700 hover:text-blue-500 transition duration-200" data-uid="iUHuNSeO1iSsBNF2GRg2_">
+                <a href="#" className="text-white hover:text-blue-500 transition duration-200" data-uid="iUHuNSeO1iSsBNF2GRg2_">
                   Contact
                 </a>
               </li>
               <li data-uid="onejlTMAcWlBdbr6MSJGg">
-                <a href="#" className="text-gray-700 hover:text-blue-500 transition duration-200" data-uid="uAlICoANKghd79jAgfqxP">
+                <a href="#" className="text-white hover:text-blue-500 transition duration-200" data-uid="uAlICoANKghd79jAgfqxP">
                   Advertise
                 </a>
               </li>
@@ -143,7 +143,7 @@ export default function Footer() {
                 </svg>
               </a>
             </div>
-            <p className="mt-4 text-gray-700" data-uid="0uSwVHYs_ON_qm8ngn6hD">
+            <p className="mt-4 text-white" data-uid="0uSwVHYs_ON_qm8ngn6hD">
               Get instant updates on new Articles
             </p>
           </div>
