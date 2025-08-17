@@ -14,6 +14,7 @@ const nextConfig = {
       'images.pexels.com',
       'upload.wikimedia.org', 
        'www.nme.com', // ✅ Added new domain here
+       
     ],
   },
 }

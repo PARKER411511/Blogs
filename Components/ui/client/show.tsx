@@ -5,12 +5,12 @@ import { useRef } from "react"
 import Image from "next/image"
 
 const fans = [
-  { name: "Sarah", message: "Can't wait for this tour! 🔥", image: "/fans/sarah.png", x: "20%", y: "15%" },
-  { name: "Mike", message: "Drake is a legend 💯", image: "/fans/mike.png", x: "80%", y: "20%" },
-  { name: "Liam", message: "Got my tickets already! 🎟️", image: "/fans/liam.png", x: "11%", y: "60%" },
-  { name: "Emma", message: "This will be epic! 😍", image: "/fans/emma.png", x: "70%", y: "75%" },
-  { name: "Liam", message: "Got my tickets already! 🎟️", image: "/fans/liam.png", x: "8%", y: "38%" },
-  { name: "Emma", message: "This will be epic! 😍", image: "/fans/emma.png", x: "77%", y: "45%" },
+  { name: "Sarah", message: "Can't wait for this tour! 🔥", image: "/Fans/image1.png", x: "20%", y: "15%" },
+  { name: "Mike", message: "Drake is a legend 💯", image: "/Fans/image2.jpg", x: "80%", y: "20%" },
+  { name: "Liam", message: "Got my tickets already! 🎟️", image: "/Fans/image.png", x: "11%", y: "60%" },
+  { name: "Emma", message: "This will be epic! 😍", image: "/Fans/image4.jpg", x: "70%", y: "75%" },
+  { name: "Liam", message: "Got my tickets already! 🎟️", image: "/Fans/image5.jpg", x: "8%", y: "38%" },
+  { name: "Emma", message: "This will be epic! 😍", image: "/Fans/image6.jpg", x: "77%", y: "45%" },
 ]
 
 export default function Show() {
